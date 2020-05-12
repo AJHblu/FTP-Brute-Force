@@ -22,7 +22,7 @@ def main():
     parser.add_argument("-w", type=str, dest="wordlist", help="--wordlist for attack", default=None)
     parser.add_argument("-u", type=str, dest="username", help='--username for ftp', default=None)
     parser.add_argument("-c", type=str, dest="check", help="--checks if ftp is enabled", default=None)
-    parser.add_argument("-a", type=str, dest="anon", help="--anonymous login", default=None)
+    parser.add_argument("-a", action="store_true", dest="anon", help="--anonymous login", default=None)
     parser.add_argument("-l", action="store_true", dest="log", help="--log", default=None)
     parser.add_argument("-o", type=str, dest="out", help="--file to output", default=None)
 
@@ -51,26 +51,23 @@ def main():
             Anon_login(anon)
         elif target and username and wordlist:
             logBrute_force(target, username, wordlist)
-        elif check:
-            Port_21(check)
 
     elif out: 
         if anon:
             oAnon_login(anon, out)
         elif target and username and wordlist:
             oBrute_force(target, username, wordlist, out)
-        elif check:
-            Port_21(check)
         
     elif anon:
         Anon_login(anon)
         if target and username and wordlist:
             Brute_force(target, username, wordlist)
-        elif check:
-            Port_21(check)
+    
+    elif check:
+        Port_21(check)
         
     else:
-        print("[-] Not a valed option please refer to -h for help")
+        print("[-] Not a valid option please refer to -h for help")
 
 
 def Anon_login(target):
