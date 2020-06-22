@@ -112,7 +112,7 @@ def Brute_force(target, username, wordlist):
             Login_ftp(target, username, word)
             word = wordlist.readline().strip()
 
-def oBrute_force(target, username, wordlist, out):
+def oBrute_force(target, username, wordlist, _out):
     with open(wordlist, "r") as wordlist:
         word = wordlist.readline().strip()
         while word:
